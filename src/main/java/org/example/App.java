@@ -3,14 +3,12 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
     {
+        Mars mars = new Mars(5,5);
+        char[] commands = {'F'};
         boolean desplegar = true;
         Scanner teclado = new Scanner(System.in);
         int numRovers = 0;
@@ -25,7 +23,7 @@ public class App
             numRovers = teclado.nextInt();
 
             for (int i = 0; i < numRovers; i++) {
-                rovers.add(new Rover(new Location(0,0), new North()));
+                rovers.add(new Rover(new Location(0,0), new North(), mars));
             }
 
             for (Rover rover: rovers) {
@@ -34,7 +32,7 @@ public class App
                 System.out.println("Introduce la cordenada y del rover");
                 System.out.println("Introduce la orientacion del rover (N, S, W, E)");
 
-                rover.moveRover('F');
+                rover.moveRover(commands);
             }
 
         }
