@@ -1,10 +1,16 @@
 package org.example;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Rover {
-    Location location;
-    Mars mars;
-    Orientation orientation;
-    char[] commands;
+    private Location location;
+    private Mars mars;
+    private Orientation orientation;
+    private char[] commands;
 
     public Rover(Location location, Orientation orientation, Mars mars) {
         this.location = location;
@@ -12,53 +18,26 @@ public class Rover {
         this.mars = mars;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public Orientation getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(Orientation orientation) {
-        this.orientation = orientation;
-    }
-
-    public char[] getCommands() {
-        return commands;
-    }
-
-    public void setCommands(char[] commands) {
-        this.commands = commands;
-    }
-
-    public Mars getMars() {
-        return mars;
-    }
-
-    public void setMars(Mars mars) {
-        this.mars = mars;
-    }
-
     public void moveRover(char[] inputArray){
         for (char input: inputArray) {
-            if (input == 'F' || input == 'B'){
-                Location moveLocation = orientation.move(input);
-                if (checkObstacles(moveLocation)){
-                    System.out.println("Can't move any further, there's an obstacle near ("+(moveLocation.getPosX()+getLocation().getPosX())+","+(moveLocation.getPosY()+getLocation().getPosY())+")");
-                    return;
-                }
-                location.setPosX(location.posX+moveLocation.posX);
-                location.setPosY(location.posY+moveLocation.posY);
+            if (input == 'F'){
+                if (checkObstacles(orientation.forward())) return;
+                location.changeLocation(orientation.forward());
                 checkBorders();
             }
-            if (input == 'R' || input == 'L'){
-                Orientation rotateOrientation = orientation.rotate(input);
-                setOrientation(rotateOrientation);
+
+            if (input == 'B'){
+                if (checkObstacles(orientation.backward())) return;
+                location.changeLocation(orientation.backward());
+                checkBorders();
+            }
+
+            if (input == 'R'){
+                setOrientation(orientation.right());
+            }
+
+            if (input == 'L'){
+                setOrientation(orientation.left());
             }
         }
     }

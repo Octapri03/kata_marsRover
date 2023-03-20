@@ -96,7 +96,7 @@ public class AppTest
         obstacles.add(new Obstacle(new Location(0,1)));
         mars.setObstacles(obstacles);
 
-        char[] commands = {'R','F','L','F','L','F'};
+        char[] commands = {'R','F','L','F','L','F', 'F','L','F'};
         Rover rover = new Rover(new Location(0,0),new North(),mars);
         rover.moveRover(commands);
         Assert.assertEquals(1, rover.getLocation().getPosY());

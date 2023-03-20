@@ -2,25 +2,22 @@ package org.example;
 
 public class North implements Orientation {
     @Override
-    public Location move(char input) {
-
-        if (input == 'F')
-            return new Location(0,1);
-
-        if (input == 'B')
-            return new Location(0,-1);
-
-        return new Location(0,0);
+    public Location forward() {
+        return new Location(0,1);
     }
 
     @Override
-    public Orientation rotate(char input){
-        if (input == 'R')
-            return new East();
+    public Location backward() {
+        return new Location(0,-1);
+    }
 
-        if (input == 'L')
-            return new West();
+    @Override
+    public Orientation left(){
+        return new West();
+    }
 
-        return new North();
+    @Override
+    public Orientation right(){
+        return new East();
     }
 }

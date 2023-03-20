@@ -1,5 +1,10 @@
 package org.example;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Location {
     int posX;
     int posY;
@@ -9,19 +14,8 @@ public class Location {
         this.posY = posY;
     }
 
-    public int getPosX() {
-        return posX;
-    }
-
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
-    public int getPosY() {
-        return posY;
-    }
-
-    public void setPosY(int posY) {
-        this.posY = posY;
+    public void changeLocation(Location newLocation){
+        this.posX += newLocation.getPosX();
+        this.posY += newLocation.getPosY();
     }
 }
