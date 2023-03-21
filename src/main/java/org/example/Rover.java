@@ -56,7 +56,7 @@ public class Rover {
         }
 
         if (location.getPosY() == -1){
-            location.setPosX(mars.getHeight());
+            location.setPosY(mars.getHeight());
         }
     }
 
@@ -83,24 +83,18 @@ public class Rover {
                 }
                 else{
                     for (Obstacle obstacle: getMars().getObstacles()) {
-                        if (obstacle.getLocation().getPosX()==j && obstacle.getLocation().getPosY()==i){
+                        if (obstacle.getLocation().getPosX()==j && obstacle.getLocation().getPosY()==i)
                             map[i][j] = 'O';
-                        }
                     }
+                    if (getMars().getObjective().getLocation().getPosX() == j && getMars().getObjective().getLocation().getPosY() == i)
+                        map[i][j] = 'M';
                     if (map[i][j] == 0)
-                    map[i][j] = '·';
+                        map[i][j] = '·';
                 }
                 System.out.print(map[i][j]+ " ");
             }
             System.out.println();
         }
-        /*for (int i = 0; i < getMars().getHeight(); i++) {
-            for (int j = 0; j < getMars().getWidth(); j++) {
-                if (getLocation().getPosX() == j && getLocation().getPosY() == i) System.out.print("R");
-                else System.out.print("#");
-            }
-            System.out.println();
-        }*/
     }
 
 

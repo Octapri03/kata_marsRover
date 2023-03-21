@@ -18,4 +18,10 @@ public class Location {
         this.posX += newLocation.getPosX();
         this.posY += newLocation.getPosY();
     }
+
+    @Override
+    public String toString() {
+        return "posX=" + posX +
+                ", posY=" + posY;
+    }
 }

@@ -102,4 +102,16 @@ public class AppTest
         Assert.assertEquals(1, rover.getLocation().getPosY());
     }
 
+    @Test
+    public void test_rover_goes_backward_from_start_point(){
+        Mars mars = new Mars(5,5);
+        mars.createObstacles();
+
+        char[] commands = {'B'};
+        Rover rover = new Rover(new Location(0,0),new North(),mars);
+        rover.moveRover(commands);
+        Assert.assertEquals(0, rover.getLocation().getPosX());
+        Assert.assertEquals(mars.getHeight(), rover.getLocation().getPosY());
+    }
+
 }
