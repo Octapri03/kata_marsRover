@@ -67,10 +67,40 @@ public class Rover {
             boolean targetLocationHasObstacle = (targetLocation.getPosX()+getLocation().getPosX() == obstacle.getLocation().getPosX() && targetLocation.getPosY()+getLocation().getPosY() == obstacle.getLocation().getPosY());
 
             if (targetLocationHasObstacle){
+                System.out.println("An obstacle has been encountered");
                 return true;
             }
         }
         return false;
+    }
+
+    public void sonar(){
+        char[][] map = new char[mars.getWidth()][mars.getHeight()];
+        for (int i = mars.getHeight()-1; i >= 0; i--) {
+            for (int j = 0; j < mars.getWidth(); j++) {
+                if (getLocation().getPosX() == j && getLocation().getPosY() == i){
+                    map[i][j] = 'R';
+                }
+                else{
+                    for (Obstacle obstacle: getMars().getObstacles()) {
+                        if (obstacle.getLocation().getPosX()==j && obstacle.getLocation().getPosY()==i){
+                            map[i][j] = 'O';
+                        }
+                    }
+                    if (map[i][j] == 0)
+                    map[i][j] = '·';
+                }
+                System.out.print(map[i][j]+ " ");
+            }
+            System.out.println();
+        }
+        /*for (int i = 0; i < getMars().getHeight(); i++) {
+            for (int j = 0; j < getMars().getWidth(); j++) {
+                if (getLocation().getPosX() == j && getLocation().getPosY() == i) System.out.print("R");
+                else System.out.print("#");
+            }
+            System.out.println();
+        }*/
     }
 
 

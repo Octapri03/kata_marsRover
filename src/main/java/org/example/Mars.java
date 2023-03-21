@@ -14,6 +14,7 @@ public class Mars {
         this.width = width;
         this.height = height;
         this.obstacles = new ArrayList<>();
+        //createObstacles();
     }
 
     public int getWidth() {
@@ -40,11 +41,11 @@ public class Mars {
         this.obstacles = obstacles;
     }
 
-    private void createObstacles(){
+    public void createObstacles(){
         Random rand = new Random();
         ArrayList<Obstacle> obstacles = new ArrayList<>();
 
-        for (int i = 0; i < getWidth()/2; i++){
+        for (int i = 0; i < getWidth(); i++){
             int posX = rand.nextInt(getWidth());
             int posY = rand.nextInt(getHeight());
 
